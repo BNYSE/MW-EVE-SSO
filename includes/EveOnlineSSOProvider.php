@@ -29,7 +29,7 @@ class EveOnlineSSOProvider extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->domain . '/v2/oauth/authorize';
+        return $this->domain . '/oauth/authorize';
     }
 
     /**
@@ -41,7 +41,7 @@ class EveOnlineSSOProvider extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->domain . '/v2/oauth/token';
+        return $this->domain . '/oauth/token';
     }
 
     /**
@@ -53,7 +53,7 @@ class EveOnlineSSOProvider extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->domain . '/v2/oauth/verify';
+        return $this->domain . '/oauth/verify';
     }
 
     /**
@@ -110,7 +110,7 @@ class EveOnlineSSOProvider extends AbstractProvider
     {
         // Retrieve additional information about the Character from ESI
         $characterInfo = $this->parseJson(
-            $this->getHttpClient()->request('get', 'https://esi.evetech.net/v5/characters/'.$response['CharacterID'] .'/')
+            $this->getHttpClient()->request('get', 'https://esi.evetech.net/v4/characters/'.$response['CharacterID'] .'/')
                                   ->getBody()
                                   ->getContents()
         );
