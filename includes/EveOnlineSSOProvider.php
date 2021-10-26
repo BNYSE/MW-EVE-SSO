@@ -110,7 +110,7 @@ class EveOnlineSSOProvider extends AbstractProvider
     {
         // Retrieve additional information about the Character from ESI
         $characterInfo = $this->parseJson(
-            $this->getHttpClient()->request('get', 'https://esi.evetech.net/v4/characters/'.$response['CharacterID'] .'/')
+            $this->getHttpClient()->request('get', 'https://esi.evetech.net/v5/characters/'.$response['CharacterID'] .'/')
                                   ->getBody()
                                   ->getContents()
         );
