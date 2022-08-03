@@ -37,8 +37,6 @@ class SpecialOAuth2Client extends SpecialPage {
 		parent::__construct('OAuth2Client');
 		global $wgOAuth2Client;
 
-		require __DIR__ . '/../vendors/oauth2-client/vendor/autoload.php';
-
 		$this->_provider = new EveOnlineSSOProvider([
             'clientId'                => $wgOAuth2Client['client']['id'],    // The client ID assigned to you by the provider
             'clientSecret'            => $wgOAuth2Client['client']['secret'],   // The client password assigned to you by the provider
