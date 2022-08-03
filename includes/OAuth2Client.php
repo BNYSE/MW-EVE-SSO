@@ -69,8 +69,9 @@ class OAuth2ClientHooks {
 
 	public static function onPersonalUrls( array &$personal_urls, Title $title ) {
 
-		global $wgOAuth2Client, $wgUser, $wgRequest;
-		if( $wgUser->isLoggedIn() ) return true;
+		global $wgOAuth2Client, $wgRequest;
+        $user = RequestContext::getMain()->getUser();
+		if( $user->isRegistered() ) return true;
 
 
 		# Due to bug 32276, if a user does not have read permissions,
@@ -86,6 +87,12 @@ class OAuth2ClientHooks {
 			'class' => 'btn_mwevesso_login',
 			'active' => false
 		);
+		
+		unset( $personal_urls['login'] );
+		unset( $personal_urls['anonlogin'] );
+		unset( $personal_urls['login-private'] );
+		unset( $personal_urls['loginprivate'] );
+		
 		if( $inExt ) {
 			$personal_urls['anon_oauth_login']['href'] = Skin::makeSpecialUrlSubpage( 'OAuth2Client', 'redirect' );
 		} else {
